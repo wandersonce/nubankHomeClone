@@ -13,6 +13,7 @@ import { Container, Content, Card, CardHeader, CardContent, CardFooter, Title, A
 
 export default function Main() {
   const translateY = new Animated.Value(0);
+  let offset = 0;
 
   const animatedEvent = Animated.event(
     [
@@ -26,14 +27,37 @@ export default function Main() {
   );
 
   function onHandlerStateChanged(e) {
+    if (e.nativeEvent.oldState === State.ACTIVE) {
+      let opened = false;
+      const { translationY } = e.nativeEvent;
 
+      offset += translationY;
+
+      if (translationY >= 100) {
+        opened = true;
+      } else {
+        translateY.setValue(offset);
+        translateY.setOffset(0);
+        offset = 0;
+      }
+
+      Animated.timing(translateY, {
+        toValue: opened ? 380 : 0,
+        duration: 200,
+        useNativeDriver: true,
+      }).start(() => {
+        offset = opened ? 380 : 0;
+        translateY.setOffset(offset);
+        translateY.setValue(0);
+      });
+    }
   }
 
   return (
-    <Container >
+    <Container>
       <Header />
       <Content>
-        <Menu />
+        <Menu translateY={translateY} />
         <PanGestureHandler
           onGestureEvent={animatedEvent}
           onHandlerStateChange={onHandlerStateChanged}
@@ -43,7 +67,7 @@ export default function Main() {
               translateY: translateY.interpolate({
                 inputRange: [-350, 0, 380],
                 outputRange: [-50, 0, 380],
-                extrapolate: 'clamp,'
+                extrapolate: 'clamp',
               }),
             }]
           }}>
@@ -63,7 +87,7 @@ export default function Main() {
           </Card>
         </PanGestureHandler>
       </Content>
-      <Tabs />
+      <Tabs translateY={translateY} />
     </Container>
   );
 }
