@@ -1,3 +1,16 @@
+# This is an Nubank Mobile Screen clone. 
+### Created using react-native is a non function screen that only shows the interface with some features.
+
+### Front Screen -
+<img src="https://user-images.githubusercontent.com/51806895/80559964-1f35b500-8994-11ea-9b2a-ab064fea7fa9.png"  width="20%"/>
+
+### Screen with Scroll Down - 
+<img src="https://user-images.githubusercontent.com/51806895/80559996-442a2800-8994-11ea-8ec5-234231304e97.png"  width="20%"/>
+
+### App Demo 
+![appDemo](https://user-images.githubusercontent.com/51806895/80560161-c9154180-8994-11ea-9847-97b5f33aef09.gif)
+
+
 <!--
 *** Obrigado por estar vendo o nosso README. Se você tiver alguma sugestão
 *** que possa melhorá-lo ainda mais dê um fork no repositório e crie uma Pull
